@@ -1,0 +1,13 @@
+# Python 3.10-3.12; install a PyTorch build matching the runtime separately.
+transformers>=4.49,<5
+datasets>=3.2,<4
+accelerate>=1.2,<2
+soundfile>=0.12,<1
+scipy>=1.13,<2
+numpy>=1.26,<3
+pandas>=2.2,<3
+matplotlib>=3.8,<4
+sacrebleu>=2.4,<3
+sentencepiece>=0.2,<1
+tiktoken>=0.7,<1
+ipykernel>=6.29,<7

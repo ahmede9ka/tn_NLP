@@ -1,0 +1,36 @@
+{
+  "audio_directory": "C:\\Users\\MSI\\Desktop\\tn-nlp\\data\\audio",
+  "expected_format": "one readable WAV file named <audio_filename>.wav per talk",
+  "expected_talks": 6,
+  "present_readable_files": 0,
+  "missing_files": [
+    "Be_the_woman_you_always_wanted_to_be_Sarah_Arbi_TEDxJendoubaVille.wav",
+    "La_Reconversion_Vers_La_Passion_Teyssir_Ksouri_TEDxBebDiwen.wav",
+    "Pink_Banana_Good_News_from_Tunisia_Raya_Ben_Guiza_at_TEDxCarthageWomen.wav",
+    "TEDx_Ooreedo_Nizar.wav",
+    "The_invisible_war_of_leadership_Achref_Aouadi_TEDxDjerba.wav",
+    "What_I_can_do_in_Tunisia_Rabii_Ben_Brahim_TEDxDjerba.wav"
+  ],
+  "invalid_files": [],
+  "out_of_bounds_segments": [],
+  "sample_rate_counts": {},
+  "files": [],
+  "splits": {
+    "test": {
+      "talks": 6,
+      "missing_files": [
+        "Be_the_woman_you_always_wanted_to_be_Sarah_Arbi_TEDxJendoubaVille.wav",
+        "La_Reconversion_Vers_La_Passion_Teyssir_Ksouri_TEDxBebDiwen.wav",
+        "Pink_Banana_Good_News_from_Tunisia_Raya_Ben_Guiza_at_TEDxCarthageWomen.wav",
+        "TEDx_Ooreedo_Nizar.wav",
+        "The_invisible_war_of_leadership_Achref_Aouadi_TEDxDjerba.wav",
+        "What_I_can_do_in_Tunisia_Rabii_Ben_Brahim_TEDxDjerba.wav"
+      ],
+      "invalid_files": [],
+      "out_of_bounds_segments": [],
+      "ready": false
+    }
+  },
+  "ready": false,
+  "audio_decode_check": "not completed for missing or invalid WAV files"
+}

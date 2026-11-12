@@ -1,0 +1,169 @@
+{
+  "dataset": "fbougares/TEDxTN",
+  "revision": "2f25fbea14b584a181f01f00aa4c6acbe352a6f7",
+  "splits": {
+    "train": {
+      "source": {
+        "rows": 15703,
+        "talks": 97,
+        "empty_text_rows": [
+          15129
+        ],
+        "duplicate_interval_rows": 0,
+        "duration_seconds": {
+          "min": 0.05400000000008731,
+          "median": 3.9410000000000025,
+          "max": 31.476,
+          "total": 81602.93068749999
+        },
+        "text_characters": {
+          "min": 1,
+          "mean": 68.88314334840476,
+          "max": 488
+        }
+      },
+      "translation": {
+        "rows": 15701,
+        "talks": 97,
+        "empty_text_rows": [
+          1341,
+          2330,
+          3832,
+          5336,
+          8651,
+          13467,
+          13556,
+          13727,
+          13896
+        ],
+        "duplicate_interval_rows": 0,
+        "duration_seconds": {
+          "min": 0.05400000000008731,
+          "median": 3.9410000000000025,
+          "max": 31.47577421539654,
+          "total": 81601.41176218531
+        },
+        "text_characters": {
+          "min": 0,
+          "mean": 79.89370103815044,
+          "max": 601
+        }
+      },
+      "alignment": {
+        "candidate_pairs": 15454,
+        "skipped_talks": {
+          "Between_Poetry_and_Calligraphy_Jelel_Bessaad_TEDxYouth_SadikiCollege": "segment_count_mismatch:249:247"
+        },
+        "mean_source_interval_overlap": 0.9999850033065573,
+        "minimum_source_interval_overlap": 0.9981999613662351,
+        "mean_target_interval_overlap": 0.9999843157150288,
+        "empty_translation_candidates": 9,
+        "note": "Ordinal/time-overlap candidates require manual spot checks before experiments."
+      }
+    },
+    "dev": {
+      "source": {
+        "rows": 731,
+        "talks": 5,
+        "empty_text_rows": [],
+        "duplicate_interval_rows": 0,
+        "duration_seconds": {
+          "min": 0.3849999999999909,
+          "median": 4.869000000000028,
+          "max": 19.909999999999968,
+          "total": 4075.5210000000006
+        },
+        "text_characters": {
+          "min": 1,
+          "mean": 79.20109439124487,
+          "max": 384
+        }
+      },
+      "translation": {
+        "rows": 731,
+        "talks": 5,
+        "empty_text_rows": [
+          90
+        ],
+        "duplicate_interval_rows": 0,
+        "duration_seconds": {
+          "min": 0.3849999999999909,
+          "median": 4.869000000000028,
+          "max": 19.909999999999968,
+          "total": 4075.5210000000006
+        },
+        "text_characters": {
+          "min": 0,
+          "mean": 91.06019151846785,
+          "max": 410
+        }
+      },
+      "alignment": {
+        "candidate_pairs": 731,
+        "skipped_talks": {},
+        "mean_source_interval_overlap": 0.9999998765932939,
+        "minimum_source_interval_overlap": 0.9999632784959132,
+        "mean_target_interval_overlap": 0.9999999039353946,
+        "empty_translation_candidates": 1,
+        "note": "Ordinal/time-overlap candidates require manual spot checks before experiments."
+      }
+    },
+    "test": {
+      "source": {
+        "rows": 842,
+        "talks": 6,
+        "empty_text_rows": [],
+        "duplicate_interval_rows": 0,
+        "duration_seconds": {
+          "min": 0.2660000000000764,
+          "median": 4.431999999999974,
+          "max": 20.249000000000024,
+          "total": 4478.613
+        },
+        "text_characters": {
+          "min": 1,
+          "mean": 73.69239904988123,
+          "max": 344
+        }
+      },
+      "translation": {
+        "rows": 842,
+        "talks": 6,
+        "empty_text_rows": [
+          477
+        ],
+        "duplicate_interval_rows": 0,
+        "duration_seconds": {
+          "min": 0.2660000000000764,
+          "median": 4.431999999999974,
+          "max": 20.249000000000024,
+          "total": 4478.613
+        },
+        "text_characters": {
+          "min": 0,
+          "mean": 81.20783847980998,
+          "max": 350
+        }
+      },
+      "alignment": {
+        "candidate_pairs": 842,
+        "skipped_talks": {},
+        "mean_source_interval_overlap": 0.999999816353243,
+        "minimum_source_interval_overlap": 0.9999700956937874,
+        "mean_target_interval_overlap": 0.9999998518824434,
+        "empty_translation_candidates": 1,
+        "note": "Ordinal/time-overlap candidates require manual spot checks before experiments."
+      }
+    }
+  },
+  "notes": [
+    "The public repository contains segment metadata and talk URLs, not audio files.",
+    "Sample rates and audio integrity cannot be measured until licensed audio is supplied.",
+    "No speaker IDs, region labels, or dialect-variant labels occur in the inspected CSV schema."
+  ],
+  "talk_leakage": {
+    "train_dev": [],
+    "train_test": [],
+    "dev_test": []
+  }
+}
