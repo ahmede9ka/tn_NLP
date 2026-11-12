@@ -1,13 +1,13 @@
-# Tunisian Speech AI: TEDxTN
+﻿# Tunisian Speech AI: TEDxTN
 
 Reproducible project scaffold for Tunisian Arabic ASR and Tunisian Arabic-to-English speech translation using the public TEDxTN corpus.
 
 ## Status and scope
 
 - The public metadata was inspected from Hugging Face dataset revision `2f25fbea14b584a181f01f00aa4c6acbe352a6f7` (repository snapshot checked 29 October 2026); the inspection script pins this revision when downloading metadata.
-- The Hugging Face repository contains README files, `TEDxTN_URLS.txt`, and six CSV files; its API reports `modality:text` and zero stored dataset bytes. No WAV, MP3, FLAC, or other audio asset is stored there. `TEDxTN_URLS.txt` contains external YouTube video URLs and talk IDs; the paper also points readers to those external videos. These URLs are references, not permission to download, train on, or redistribute the recordings. Get authorization and follow source-platform terms before using audio.
-- A local audio audit is implemented and has run. It found **0 of 108** expected WAV files in the workspace; all expected filenames are recorded in `results/metrics/audio_inventory.json`. No ASR or translation model was trained or evaluated.
-- The metadata/EDA notebook cells were executed successfully. The active Python environment has CPU-only `torch 2.6.0+cpu`; `torch.cuda.is_available()` is false, and `transformers`, `datasets`, and `sacrebleu` are not installed. Model inference/training cells remain unexecuted.
+- The Hugging Face repository contains README files, `TEDxTN_URLS.txt`, and six CSV files; its API reports `modality:text` and zero stored dataset bytes. No WAV, MP3, FLAC, or other audio asset is stored there. `TEDxTN_URLS.txt` contains external YouTube video URLs and talk IDs; the paper also points readers to those external videos. These URLs are references, not permission to download, train on, or redistribute the recordings. Obtain authorization and follow the source-platform terms before using audio.
+- A local audio audit is implemented and has run. It found 0 of 108 expected WAV files in the workspace; all expected filenames are recorded in `results/metrics/audio_inventory.json`. No ASR or translation model was trained or evaluated.
+- The metadata and EDA notebook cells were executed successfully. The active Python environment has CPU-only `torch 2.6.0+cpu`; `torch.cuda.is_available()` is false, and `transformers`, `datasets`, and `sacrebleu` are not installed. Model-inference and training cells remain unexecuted.
 - The notebooks are designed to report missing audio and keep model runs opt-in. Results are not fabricated; local experiment result files are only written after an experiment runs.
 
 ## Findings from the actual metadata
@@ -21,7 +21,7 @@ Reproducible project scaffold for Tunisian Arabic ASR and Tunisian Arabic-to-Eng
 
 The talk identifiers do not overlap across the three source splits. There is one whitespace-only source transcript in the inspected CSV snapshot; blank English references occur 9/1/1 times for train/dev/test. Four train segments are longer than Whisper's 30-second input limit. The English CSV boundaries are not always identical to source boundaries, and one training talk has a different segment count (249 source rows vs 247 English rows). The project therefore reports ordinal/time-overlap candidates (15,454 train, 731 dev, 842 test before blank-target filtering), requiring at least 50% coverage of both intervals, and excludes the unmatched talk instead of assuming exact CSV row joins. The measured minimum source-interval overlap among candidates is 99.82%. Candidate alignment still needs manual spot checks.
 
-The ASR metadata EDA measured 30,309 distinct whitespace-delimited train tokens. A script-based count found 163,463 Arabic-containing and 41,846 Latin-containing token instances, with zero containing both scripts. This is a script heuristic, **not** a language/code-switch annotation.
+The ASR metadata EDA measured 30,309 distinct whitespace-delimited train tokens. A script-based count found 163,463 Arabic-containing and 41,846 Latin-containing token instances, with zero containing both scripts. This is a script heuristic, not a language or code-switch annotation.
 
 The CSV columns are:
 
@@ -34,7 +34,7 @@ The files contain no speaker IDs, region labels, or dialect-variant annotations.
 
 Bougares et al. introduce 108 Tunisian TEDx talks (28h39 collected audio; 25h01 transcribed), with code-switching across Tunisian Arabic, French, and English. Their guidelines use Arabic script for Tunisian words, Roman script for foreign words, and dialect-aware fixed spellings; translations prioritize natural meaning. They split by complete talks and report no speaker overlap between train, validation, and test.
 
-The paper fine-tunes Whisper, MMS, XLS-R, and w2v-BERT-2.0 using SpeechBrain for 80 epochs. Its best reported ASR is w2v-BERT-2.0T (21.37% test WER, 8.34% CER); its Whisper large-v3 ASR test WER is 25.19%. Whisper large-v3 direct speech translation reaches 25.68 test BLEU. These are **paper results**, not results produced by this repository. The paper reports that zero-shot Whisper-large-v3 WER remains high (94.00% test), illustrating the value of dialect-specific adaptation. The reported limitations include limited geographic/demographic coverage and the corpus's non-commercial/no-derivatives license.
+The paper fine-tunes Whisper, MMS, XLS-R, and w2v-BERT-2.0 using SpeechBrain for 80 epochs. Its best reported ASR is w2v-BERT-2.0T (21.37% test WER, 8.34% CER); its Whisper large-v3 ASR test WER is 25.19%. Whisper large-v3 direct speech translation reaches 25.68 test BLEU. These are paper results, not results produced by this repository. The paper reports that zero-shot Whisper-large-v3 WER remains high (94.00% test), illustrating the value of dialect-specific adaptation. The reported limitations include limited geographic and demographic coverage, plus the corpus's non-commercial/no-derivatives license.
 
 The selected practical reproduction path is Whisper-small ASR fine-tuning and Whisper-small direct speech translation, with Whisper `translate` as the direct speech baseline and NLLB-200 distilled 600M (`aeb_Arab` → `eng_Latn`) for the ASR→MT pipeline. The pinned Whisper model card documents both transcription and translation task tokens and lists Arabic; the pinned NLLB card lists Tunisian Arabic and English. Those labels do not establish benchmark quality. NLLB's model card describes local Transformers inference and marks hosted inference unavailable. The experiment config pins model revisions. Whisper-small is Apache-2.0; NLLB-200 distilled 600M is CC-BY-NC-4.0 and should be treated as research-only/non-commercial. The local RTX 3050 has 4 GiB VRAM and driver 511.65 (CUDA 11.6 reported), so its memory and driver may not support current CUDA wheels; full fine-tuning is intended for a suitable Colab or larger GPU. Smoke-test settings are provided.
 
@@ -48,18 +48,22 @@ The selected practical reproduction path is Whisper-small ASR fine-tuning and Wh
 ├── notebooks/
 │   ├── 01_Tunisian_ASR.ipynb
 │   └── 02_Speech_to_Text_Translation.ipynb
-├── scripts/inspect_dataset.py
-├── scripts/check_audio.py
+├── scripts/
+│   ├── inspect_dataset.py
+│   └── check_audio.py
 ├── src/
 │   ├── data_utils.py
 │   └── evaluation.py
 ├── tests/test_project.py
 ├── report/research_report.md
-├── results/metrics/
-│   ├── dataset_inspection.json
-│   ├── audio_inventory.json
-│   └── audio_inventory_test.json
-└── results/figures/asr_metadata_eda.png
+├── results/
+│   ├── metrics/
+│   │   ├── dataset_inspection.json
+│   │   ├── audio_inventory.json
+│   │   └── audio_inventory_test.json
+│   └── figures/
+│       └── asr_metadata_eda.png
+└── .gitignore
 ```
 
 Optional text-normalization and dialect-identification notebooks are not included: the mandatory speech experiments need to be operational first, and the CSVs do not provide ground-truth dialect labels.
@@ -129,5 +133,3 @@ TEDxTN metadata is published under **CC BY-NC-ND 4.0**. Review the license and s
 - Dataset: https://huggingface.co/datasets/fbougares/TEDxTN
 - Whisper: https://huggingface.co/openai/whisper-small
 - NLLB-200: https://huggingface.co/facebook/nllb-200-distilled-600M
-#   t n _ N L P  
- 
